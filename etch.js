@@ -18,7 +18,7 @@ mainContainer.style.backgroundColor = "black";
 mainContainer.style.display = "flex";
 mainContainer.style.justifyContent = "space-around";
 mainContainer.style.alignItems = "center";
-mainContainer.style.gap = `${1/26}vw`;
+// mainContainer.style.gap = `${1/26}vw`;
 mainContainer.style.flexWrap = "wrap";
 
 
@@ -26,10 +26,18 @@ mainContainer.style.flexWrap = "wrap";
 mainButtonContainer.appendChild(selectionBtn);
 
 let gridNum = 1;
+square = [];
 
-function createGrid(gridNum){
-    square = [];
-
+function createGrid(){
+    
+    if (square.length > 0){
+        mainContainer.removeChild(child);
+        square = [];
+    }
+    
+    gridNum = parseInt(document.getElementById("myInput").value,10);
+    mainContainer.style.gap = `${1/(gridNum+1)}vw`;
+    
     let k=0;
     for (let i = 0; i < gridNum; i++) {
         for (let j = 0; j < gridNum; j++) {
@@ -61,7 +69,7 @@ function createGrid(gridNum){
 
 
 
-selectionBtn.addEventListener("click", () => createGrid(25));
+selectionBtn.addEventListener("click", () => createGrid());
 
 
 
